@@ -2,26 +2,106 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+* {
+  @apply transition-all duration-100 ease-out;
+  scrollbar-width: none;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply antialiased;
+  /* overflow: hidden; */
 }
+
+header {
+  transition: all 500ms ease-in-out;
+}
+
+.full-screen-image {
+  /* height: 100vh; */
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.full-screen-image img {
+  height: 100%;
+  width: 100%;
+  /* object-fit: contain; */
+  /* position: absolute; */
+  z-index: 0;
+}
+
+.fade-out {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* border: 2px solid white; */
+  background: linear-gradient(to bottom, transparent, #141414 100%);
+  background-size: 100% 100%; /* 100% width, 50% height */
+  z-index: 0;
+}
+
+
+/* Apply the nodding animation to the button when hovered */
+.btn-nod:hover {
+  transform: translateY(-5px) rotateX(-10deg);
+}
+
+.scrollContainer {
+  display: flex;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  /* scroll-snap-type: x mandatory; */
+  /* scroll-padding: 1rem; */
+  /* height: fit-content; */
+  /* width: 100%; */
+  gap: .15rem;
+  border: 2px solid white;
+  scrollbar-width: none;
+  /* margin-top: 50px; */
+  position: relative;
+  overflow: visible;
+}
+
+.scrollImage {
+  flex-shrink: 0;
+  /* width: 100%; */
+  scroll-snap-align: start;
+  /* margin-right: 1rem; */
+  /* overflow: hidden; */
+  height: 100%;
+  border-radius: 3px;
+  /* z-index: 20; */
+}
+
+
+.item {
+  position: relative;
+  display: block;
+  flex: 1 1 0px;
+  transition: transform 500ms;
+}
+
+.container .item:focus,
+.container .item:hover {
+  transform: scale(1.5);
+  z-index: 1;
+}
+
+
+
+.item img {
+  display: block;
+  max-width: 100%;
+}
+
+
+
+
+
+
+
+
