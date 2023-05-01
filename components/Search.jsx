@@ -6,6 +6,7 @@ const Search = () => {
   const [showSearch, setShowSearch] = useState(false)
   const searchRef = useRef(null)
   const inputRef = useRef(null)
+  const search = useRef(null)
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -20,14 +21,12 @@ const Search = () => {
   }, [searchRef])
 
   const handleToggleSearch = () => {
-    setTimeout(() => {
-      setShowSearch(!showSearch)
-    }, 50)
+    setShowSearch(!showSearch)
+    search.current.classList.add(showSearch ? "show" : "hide")
     setTimeout(() => {
       inputRef.current.focus()
-    }, 300)
+    }, 500)
   }
-
   const handleToggle = () => {
     setTimeout(() => {
       setShowSearch(false)
@@ -35,24 +34,39 @@ const Search = () => {
   }
 
   return (
-    <div ref={searchRef} className=" cursor-pointer">
+    <div ref={searchRef} className=" cursor-pointer sm:relative sm:mr-3 lg:mr-0 xl:mr-3">
       <RiSearchLine
-        className="text-[22px] md:z-20 relative text-white"
+        className="text-[22px] md:z-20 sm:relative z-20 text-white"
         onClick={handleToggleSearch}
       />
+      <div
+        ref={search}
+        id="search"
+        className={`absolute w-[250px] hidden sm:block lg:hidden xl:block duration-300 top-1/2 -translate-y-1/2 translate-x-3 right-0  z-10  bg-black/80 rounded`}
+      >
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Search"
+          className="w-full border border-neutral-800 outline-none text-white h-10 rounded border-l-2 border-l-neutral-300 bg-brandBlack/80  px-2.5"
+        />
+      
+      </div>
 
       <div
-        className={`absolute top-1/2  -translate-y-1/2 left-5 right-14  z-50 lg:right-20   bg-black/80 rounded ${
+        ref={search}
+        id="search"
+        className={`absolute left-1/2 -translate-x-1/2 w-[280px] sm:hidden lg:block xl:hidden duration-300   z-30  bg-black/80 rounded ${
           showSearch
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+            ? "opacity-100 pointer-events-auto top-14 lg:top-8"
+            : "opacity-0 pointer-events-none top-1/2"
         }`}
       >
         <input
           ref={inputRef}
           type="text"
           placeholder="Search"
-          className="w-full border border-neutral-700 outline-none text-white h-10 rounded bg-brandBlack/80  px-2.5"
+          className="w-full border border-neutral-800 outline-none text-white h-10 rounded border-l-2 border-l-neutral-300 bg-brandBlack/80  px-2.5"
         />
         <IoMdClose
           id="close-search"

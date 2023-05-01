@@ -3,13 +3,12 @@
 @tailwind utilities;
 
 * {
-  @apply transition-all duration-100 ease-out;
+  @apply transition-all duration-100 delay-100 ease-out;
   scrollbar-width: none;
 }
 
 body {
   @apply antialiased;
-  /* overflow: hidden; */
 }
 
 header {
@@ -37,71 +36,152 @@ header {
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
   /* border: 2px solid white; */
   background: linear-gradient(to bottom, transparent, #141414 100%);
   background-size: 100% 100%; /* 100% width, 50% height */
   z-index: 0;
 }
 
-
-/* Apply the nodding animation to the button when hovered */
-.btn-nod:hover {
-  transform: translateY(-5px) rotateX(-10deg);
-}
-
-.scrollContainer {
-  display: flex;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  /* scroll-snap-type: x mandatory; */
-  /* scroll-padding: 1rem; */
-  /* height: fit-content; */
-  /* width: 100%; */
-  gap: .15rem;
-  border: 2px solid white;
-  scrollbar-width: none;
-  /* margin-top: 50px; */
-  position: relative;
-  overflow: visible;
-}
-
-.scrollImage {
-  flex-shrink: 0;
-  /* width: 100%; */
-  scroll-snap-align: start;
-  /* margin-right: 1rem; */
-  /* overflow: hidden; */
-  height: 100%;
-  border-radius: 3px;
-  /* z-index: 20; */
+#imageContainer {
+  width: 200px;
+  height: 111px;
+  cursor: pointer;
 }
 
 
-.item {
-  position: relative;
-  display: block;
-  flex: 1 1 0px;
-  transition: transform 500ms;
+
+
+ #exImage {
+  width: 200px;
+  height: 111px;
+  will-change: width, height, z-index;
+  z-index: 2;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.container .item:focus,
-.container .item:hover {
-  transform: scale(1.5);
+#exImage:hover {
+  width: 341px;
+  height: 360px;
+  z-index: 49;
+  transition-delay: 500ms;
+}
+
+#imageContainer:hover #exImage {
+  width: 341px;
+  height: 360px;
+  z-index: 49;
+  transition-delay: 500ms;
+}
+
+
+#exImage:not(:hover) {
+  width: 200px;
+  height: 111px;
   z-index: 1;
-}
-
-
-
-.item img {
-  display: block;
-  max-width: 100%;
+  transition-delay: 0s;
 }
 
 
 
 
+#drop-down {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+#browse-drop:hover #drop-down {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(10px);
+}
 
 
+#profile-dropdown {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+
+}
+
+#profile-button:hover #profile-dropdown{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(10px);
+
+}
+
+#profile-dropdown-container {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+pointer-events: none;
+}
+
+#profile-button:hover #profile-dropdown-container{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(10px);
+pointer-events: auto;
+}
+
+
+
+
+
+#notifications-dropdown {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+pointer-events: none;
+}
+
+#notification-button:hover #notifications-dropdown{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(10px);
+pointer-events: auto;
+}
+
+#notifications-dropdown-container {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+pointer-events: none;
+}
+
+#notification-button:hover #notifications-dropdown-container{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(10px);
+pointer-events: auto;
+}
+
+
+
+
+
+/* 
+#container {
+  padding: 0 4%;
+} */
+
+#search-container {
+  height: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
+
+#search-container.show {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+}
 
 

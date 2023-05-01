@@ -11,7 +11,7 @@ module.exports = {
         brandBlack: '#141414'
       },
       screens: {
-        xs: "420px"
+        xs: "500px"
       }
     },
   },
